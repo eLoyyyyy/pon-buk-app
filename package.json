@@ -2,8 +2,14 @@
   "name": "phonebook-test",
   "version": "0.0.1",
   "description": "Mark's phonebook app (newbie-shly modified)",
-  "bugs": [
-    "web": "https://github"
+  "bugs": {
+    "web": "https://github.com/eLoyyyyy/pon-buk-app/issues"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/eLoyyyyy/pon-buk-app.git"
+    }
   ],
   "scripts": {
     "start": "node ./bin/www",
