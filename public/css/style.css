@@ -6,3 +6,100 @@ body {
 a {
   color: #00B7FF;
 }
+
+.navbar-collapse.collapse{
+  display: block !important;
+}
+
+.navbar-nav>li, .navbar-nav{
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child{
+  margin-right: -15px !important;
+}
+
+.navbar-right{
+  float: right !important;
+}
+
+
+.half-full {
+  max-width: 698px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.thumbnail {
+  padding: 0;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  position: relative;
+  margin: .5rem 0 1rem 0;
+  background-color: #fff;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+}
+
+.card .card-image {
+  position: relative;
+  height: 200px;
+  background-color: #f4f4f4;
+}
+
+.card .card-image img {
+  display: block;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  width: 100%;
+  max-width: 120px;
+  margin: 0 auto;
+  transform: translateY(-70%);
+}
+
+.card .card-image .card-title {
+    color: #797979;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    padding: 0 24px;
+}
+
+.card .card-image .card-back {
+    color: #797979;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: 24px;
+}
+
+.card .card-title {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.card .card-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+}
+
+.is-64x64 {
+  width: 64px;
+  height: 64px;
+}
+
+.contact-number {
+  vertical-align: text-bottom;
+  line-height: 2em;
+  margin-left: 1em;
+}

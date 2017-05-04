@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "cn_id": "1",
+      "name": "eLoy",
+      "contact_number": "8-7000"
+    },
+    {
+      "cn_id": "2",
+      "name": "Jared",
+      "contact_number": "8-6236"
+    },
+    {
+      "cn_id": "3",
+      "name": "Ja",
+      "contact_number": "723-3595"
+    }
+  ]
+}
