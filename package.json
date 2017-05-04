@@ -20,7 +20,8 @@
     "install-prod": "npm install --only=production",
     "install-dev": "npm install --only=dev",
     "mocha": "mocha test/*.js",
-    "test": "npm run mocha"
+    "test": "npm run mocha",
+    "start-dev": "concurrently \"npm start\" \"npm run build:watch\" --kill-others"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -29,6 +30,7 @@
     "debug": "~2.6.3",
     "ejs": "^2.5.6",
     "express": "~4.15.2",
+    "font-awesome": "^4.7.0",
     "morgan": "~1.8.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
@@ -43,6 +45,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "chai": "^3.5.0",
+    "concurrently": "^3.4.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

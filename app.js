@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use('/font-awesome', express.static(path.join(__dirname, 'node_modules/font-awesome')));
 
 app.use('/api/users', users);
 app.use('*', (req, res) => {
