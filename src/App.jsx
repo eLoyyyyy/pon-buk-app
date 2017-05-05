@@ -11,8 +11,8 @@ import {
 import Main from './Main.jsx';
 import ContactList from './containers/ContactList.jsx';
 import Contact from './containers/Contact.jsx';
-import ContactSearch from './ContactSearch.jsx';
-import ContactForm from './ContactForm.jsx';
+import ContactSearch from './containers/ContactSearch.jsx';
+import ContactForm from './containers/ContactForm.jsx';
 
 const App = () =>
   <Router history={browserHistory}>

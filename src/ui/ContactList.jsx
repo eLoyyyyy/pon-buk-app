@@ -6,7 +6,7 @@ const ContactList = ({ contacts }) =>
     <ContactListNav />
     <div className="list-group">
       {contacts.map(contact =>
-        <a href={`/contact/${contact.cn_id}`} className="list-group-item">{contact.name}</a>
+        <a href={`/contact/${contact.cn_id}`} key={contact.cn_id} className="list-group-item">{contact.name}</a>
       )}
     </div>
   </div>;
