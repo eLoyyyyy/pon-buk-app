@@ -9,7 +9,12 @@ class ContactSearch extends Component {
     // ${this.route.name}: ${this.params.id}
   }
 
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
   render() {
+    let _input;
     const { suggestions = [], fetching = false, onChange = f => f } = this.props;
 
     console.log( fetching );
@@ -19,7 +24,7 @@ class ContactSearch extends Component {
           <a className="field-group-back" href="/contact">
             <i className="fa fa-arrow-left fa-fw"></i>
           </a>
-          <input type="text" className="field-control" onChange={onChange} />
+          <input type="text" className="field-control" ref={(input) => { _input = input; }} onChange={() => onChange(_input.value)} />
           <span className="field-group-erase" href="/">
               <i className="fa fa-times" aria-hidden="true" onClick={this.clearInput}></i>
           </span>

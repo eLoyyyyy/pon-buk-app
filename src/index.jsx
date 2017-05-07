@@ -1,5 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import C from './constants';
+import initialState from './initialState.json';
+import storeFactory from './store/index';
 import App from './App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('react-app'));
+const store = storeFactory(initialState);
+
+window.store = store;
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('react-app')
+);
