@@ -1,0 +1,8 @@
+{
+  "contacts" : [],
+  "errors" : [],
+  "contactNames" : {
+    "fetching": false,
+    "suggestions": []
+  }
+}

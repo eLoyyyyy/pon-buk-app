@@ -26,7 +26,7 @@ app.use('/font-awesome', express.static(path.join(__dirname, 'node_modules/font-
 app.use('/api/users', users);
 app.use('*', (req, res) => {
   res.sendFile( path.join(__dirname, 'public/index.html') );
-})
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -4,7 +4,9 @@ var settings = require('../settings');
 var crypto = require('crypto');
 
 var path = require('path');
-var dbPath = path.resolve(settings.ROOT, 'mydb.db')
+var dbPath = path.resolve(settings.ROOT, 'mydb.db');
+
+const sampleData = require('../src/sampleData.json');
 
 var db = new sqlite3.Database(dbPath);
 
@@ -27,6 +29,24 @@ router.get('/', (req, res, next) => {
     }
     res.json({ contacts: rows });
   });
+});
+
+router.get('/search/:name', (req, res, next) => {
+
+  setTimeout(() =>
+    res.status(200).json(
+      sampleData.contacts.filter(contact =>
+        req.params.name.toLowerCase() === contact.name.substr(0, req.params.name.length).toLowerCase()
+      )
+    ),
+    500
+  );
+});
+
+router.get('/search/', (req, res, next) => {
+  setTimeout(() => {
+    res.status(200).json([]);
+  }, 500);
 });
 
 router.get('/:contactId', (req, res, next) => {
