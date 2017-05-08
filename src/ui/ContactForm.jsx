@@ -5,7 +5,7 @@ class ContactForm extends Component {
   render() {
     let _name, _contact_number;
 
-    const { onNewContact = f => f, type = null, contact = {} } = this.props;
+    const { onContact = f => f, type = null, contact = {} } = this.props;
 
     const typeTitle = (type) => {
       switch (type) {
@@ -21,7 +21,8 @@ class ContactForm extends Component {
     const onSubmit = (e) => {
       e.preventDefault();
 
-      onNewContact({
+      onContact({
+        type,
         name: _name.value,
         contact_number: _contact_number.value
       });

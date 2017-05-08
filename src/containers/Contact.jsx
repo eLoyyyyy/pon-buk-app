@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import test from '../sampleData.json';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.contacts);
+  const angChosenOne = state.contacts.find( contact => contact.cn_id === ownProps.params.id);
+  console.log(state);
   return {
-    contacts: state.contacts.find( contact => contact.cn_id === ownProps.params.id)
+    contact: state.active
   };
 };
 

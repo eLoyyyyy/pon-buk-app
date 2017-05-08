@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 
 class ContactSearch extends Component {
 
@@ -15,7 +16,7 @@ class ContactSearch extends Component {
     return (
       <div>
         <div className="field-group">
-          <a className="field-group-back" href="/contact">
+          <a className="field-group-back" onClick={browserHistory.push('/contact')}>
             <i className="fa fa-arrow-left fa-fw">&nbsp;</i>
           </a>
           <input type="text" className="field-control" ref={(input) => { _input = input; }} onChange={() => onChange(_input.value)} />

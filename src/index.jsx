@@ -9,6 +9,8 @@ import App from './App.jsx';
 
 const store = storeFactory();
 
+store.dispatch({ type: 'INIT' });
+
 window.store = store;
 
 ReactDOM.render(

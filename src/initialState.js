@@ -1,10 +1,10 @@
 import C from './constants';
 import initialState from './initialState.json';
 import storeFactory from './store/index';
-import { addContact, loadContacts } from './actions';
+import { fetchContact } from './actions';
 
 const store = storeFactory();
 
 store.dispatch(
-  addContact('jared', '10928302')
+  fetchContact('4141')
 );
