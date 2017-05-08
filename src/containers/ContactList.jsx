@@ -10,17 +10,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadContacts() {
-      dispatch(
-        loadContacts()
-      );
-    }
-  };
-};
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(ContactList);
+const Container = connect(mapStateToProps)(ContactList);
 
 export default Container;
 // <ContactList contacts={test.contacts} />;

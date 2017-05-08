@@ -32,15 +32,21 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/search/:name', (req, res, next) => {
-
-  setTimeout(() =>
-    res.status(200).json(
-      sampleData.contacts.filter(contact =>
-        req.params.name.toLowerCase() === contact.name.substr(0, req.params.name.length).toLowerCase()
-      )
-    ),
-    500
-  );
+  db.all('SELECT * FROM contacts WHERE name like "%"||$sq||"%"', { $sq: req.params.name },
+  (err, rows) => {
+    if (err) {
+      res.send(err);
+    } else {
+      setTimeout(() =>
+        res.status(200).json(
+          rows.filter(contact =>
+            req.params.name.toLowerCase() === contact.name.substr(0, req.params.name.length).toLowerCase()
+          )
+        ),
+        500
+      );
+    }
+  });
 });
 
 router.get('/search/', (req, res, next) => {

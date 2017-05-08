@@ -3,8 +3,8 @@ import initialState from './initialState.json';
 import storeFactory from './store/index';
 import { addContact, loadContacts } from './actions';
 
-const store = storeFactory(initialState);
+const store = storeFactory();
 
 store.dispatch(
-  loadContacts()
+  addContact('jared', '10928302')
 );

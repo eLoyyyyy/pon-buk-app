@@ -1,12 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import C from './constants';
-
-export function addContact( cnId, name, contactNumber ) {
-  return {
-    type: C.ADD_CONTACT,
-    payload: { cn_id: cnId + 1, name, contact_number: contactNumber }
-  };
-}
+import { browserHistory } from 'react-router';
 
 export const removeContact = contactID => ({
   type: C.REMOVE_CONTACT,
@@ -80,6 +74,36 @@ export const loadContacts = () => (dispatch) => {
         type: C.LOAD_CONTACTS,
         payload: response.contacts
       });
+    }).catch( (error) => {
+      dispatch(
+        addError(error.message)
+      );
+    });
+};
+
+export const addContact = ( name, contactNumber ) => (dispatch) => {
+  fetch('http://localhost:3000/api/users', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      contact_number: contactNumber
+    })
+  })
+    .then(res => res.json())
+    .then((response) => {
+      dispatch({
+        type: C.ADD_CONTACT,
+        payload: {
+          cn_id: response.newId,
+          name,
+          contact_number: contactNumber
+        }
+      });
+      browserHistory.push(`/contact/${response.newId}`);
     }).catch( (error) => {
       dispatch(
         addError(error.message)

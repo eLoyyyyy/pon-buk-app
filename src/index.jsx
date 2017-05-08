@@ -7,7 +7,7 @@ import initialState from './initialState.json';
 import storeFactory from './store/index';
 import App from './App.jsx';
 
-const store = storeFactory(initialState);
+const store = storeFactory();
 
 window.store = store;
 

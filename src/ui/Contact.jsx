@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Contact = ({ contact }) =>
-
   <div className="card">
     <div className="card-image">
-      <img src="/img/headshot-placeholder.jpg" />
+      <img src="/img/headshot-placeholder.jpg" alt="..." />
       <h4 className="card-title">{ contact.name }</h4>
       <Link to="/contact" className="card-back">
         <i className="fa fa-arrow-left fa-2x fa-fw"></i>

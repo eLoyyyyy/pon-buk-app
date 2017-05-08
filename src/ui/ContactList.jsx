@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import ContactListNav from './ContactListNav.jsx';
 
 class ContactList extends Component {
-  componentDidMount() {
-    this.props.loadContacts();
-  }
 
   render() {
     const { contacts } = this.props;
