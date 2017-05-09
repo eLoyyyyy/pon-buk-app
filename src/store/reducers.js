@@ -1,8 +1,25 @@
 import { combineReducers } from 'redux';
 import C from '../constants';
 
-export const contact = (state = null, action) =>
-  (action.type === C.ADD_CONTACT) ? action.payload : state;
+export const contact = (state = null, action) => {
+  switch (action.type) {
+    case C.ADD_CONTACT:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const active = (state = null, action) => {
+  switch (action.type) {
+    case C.FETCH_CONTACT:
+      return action.payload;
+    case C.REMOVE_CONTACT:
+      return null;
+    default:
+      return state;
+  }
+};
 
 export const errors = (state = [], action) => {
   switch (action.type) {
@@ -62,6 +79,7 @@ export const suggestions = (state = [], action) => {
 };
 
 const singleReducer = combineReducers({
+  active,
   contacts,
   errors,
   contactNames: combineReducers({

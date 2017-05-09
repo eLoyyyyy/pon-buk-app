@@ -13,12 +13,12 @@ const ContactListNav = () =>
         <ul className="nav navbar-nav navbar-right">
           <li>
             <Link to="/contact/new">
-              <i className="fa fa-plus" aria-hidden="true"></i>
+              <i className="fa fa-plus" aria-hidden="true">&nbsp;</i>
             </Link>
           </li>
           <li>
             <Link to="/contact/search">
-              <i className="fa fa-search" aria-hidden="true"></i>
+              <i className="fa fa-search" aria-hidden="true">&nbsp;</i>
             </Link>
           </li>
         </ul>

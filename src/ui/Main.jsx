@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Main extends Component {
 
   componentDidMount() {
-    this.props.loadContacts();
+    // this.props.loadContacts();
   }
 
   render() {

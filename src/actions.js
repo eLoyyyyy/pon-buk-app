@@ -26,20 +26,6 @@ export const clearSuggestions = () => ({
   type: C.CLEAR_SUGGESTIONS
 });
 
-export const randomGoals = () => (dispatch, getState) => {
-  if ( !getState().contactNames.fetching ) {
-    dispatch({
-      type: C.FETCHING_CONTACTS
-    });
-
-    setTimeout(() => {
-      dispatch({
-        type: C.CANCEL_FETCHING
-      });
-    }, 1500);
-  }
-};
-
 /* to use thunks, the action functions will have another function which
 I can get dispatch method and getState */
 
@@ -81,6 +67,24 @@ export const loadContacts = () => (dispatch) => {
     });
 };
 
+
+
+export const fetchContact = id => (dispatch) => {
+  fetch(`http://localhost:3000/api/users/${id}`)
+    .then(res => res.json())
+    .then((response) => {
+      dispatch({
+        type: C.FETCH_CONTACT,
+        payload: response.contact
+      });
+      browserHistory.push(`/contact/${response.contact.cn_id}`);
+    }).catch( (error) => {
+      dispatch(
+        addError(error.message)
+      );
+    });
+};
+
 export const addContact = ( name, contactNumber ) => (dispatch) => {
   fetch('http://localhost:3000/api/users', {
     method: 'POST',
@@ -93,18 +97,86 @@ export const addContact = ( name, contactNumber ) => (dispatch) => {
       contact_number: contactNumber
     })
   })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.ADD_CONTACT,
+      payload: {
+        cn_id: response.newId,
+        name,
+        contact_number: contactNumber
+      }
+    });
+    return fetch(`http://localhost:3000/api/users/${response.newId}`);
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.FETCH_CONTACT,
+      payload: response.contact
+    });
+    browserHistory.push(`/contact/${response.contact.cn_id}`);
+  })
+  .catch( (error) => {
+    dispatch(
+      addError(error.message)
+    );
+  });
+};
+
+export const editContact = ( id, name, contactNumber ) => (dispatch) => {
+  fetch(`http://localhost:3000/api/users/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      contact_number: contactNumber
+    })
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.REMOVE_CONTACT,
+      payload: id
+    });
+    dispatch({
+      type: C.ADD_CONTACT,
+      payload: {
+        cn_id: id,
+        name,
+        contact_number: contactNumber
+      }
+    });
+    return fetch(`http://localhost:3000/api/users/${id}`);
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.FETCH_CONTACT,
+      payload: response.contact
+    });
+    browserHistory.push(`/contact/${response.contact.cn_id}`);
+  })
+  .catch( (error) => {
+    dispatch(
+      addError(error.message)
+    );
+  });
+};
+
+export const deleteContact = id => (dispatch) => {
+  fetch(`http://localhost:3000/api/users/${id}`, { method: 'DELETE' })
     .then(res => res.json())
     .then((response) => {
       dispatch({
-        type: C.ADD_CONTACT,
-        payload: {
-          cn_id: response.newId,
-          name,
-          contact_number: contactNumber
-        }
+        type: C.REMOVE_CONTACT,
+        payload: id
       });
-      browserHistory.push(`/contact/${response.newId}`);
-    }).catch( (error) => {
+    })
+    .catch( (error) => {
       dispatch(
         addError(error.message)
       );
