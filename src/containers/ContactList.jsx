@@ -2,7 +2,7 @@ import React from 'react';
 import ContactList from '../ui/ContactList.jsx';
 import test from '../sampleData.json';
 import { connect } from 'react-redux';
-import { loadContacts } from '../actions';
+import { fetchContact } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,10 +12,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadContacts() {
+    navigateTo(value) {
       dispatch(
-        loadContacts()
+        fetchContact(value)
       );
+      // console.log(value);
     }
   };
 };

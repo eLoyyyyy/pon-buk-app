@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import ContactListNav from './ContactListNav.jsx';
 
 class ContactList extends Component {
-  componentDidMount() {
-    this.props.loadContacts();
-  }
 
   render() {
-    const { contacts } = this.props;
+    const { contacts, navigateTo = f => f } = this.props;
 
     return (
       <div>
         <ContactListNav />
         <div className="list-group">
           {contacts.map(contact =>
-            <a href={`/contact/${contact.cn_id}`} key={contact.cn_id} className="list-group-item">{contact.name}</a>
+            <a onClick={() => navigateTo(contact.cn_id)} key={contact.cn_id} className="list-group-item">{contact.name}</a>
           )}
         </div>
       </div>

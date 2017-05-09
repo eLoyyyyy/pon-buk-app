@@ -8,7 +8,7 @@ import {
 } from 'react-router';
 
 
-import Main from './ui/Main.jsx';
+import Main from './containers/Main.jsx';
 import ContactList from './containers/ContactList.jsx';
 import Contact from './containers/Contact.jsx';
 import ContactSearch from './containers/ContactSearch.jsx';
