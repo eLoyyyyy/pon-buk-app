@@ -4,24 +4,20 @@ import { browserHistory } from 'react-router';
 
 class ContactSearch extends Component {
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
-
   render() {
     let _input;
-    const { suggestions = [], fetching = false, onChange = f => f } = this.props;
 
-    console.log( fetching );
+    const { suggestions = [], fetching = false, onChange = f => f, navigateTo = f => f } = this.props;
+
     return (
       <div>
         <div className="field-group">
-          <a className="field-group-back" onClick={browserHistory.push('/contact')}>
+          <a className="field-group-back" href="/contact" >
             <i className="fa fa-arrow-left fa-fw">&nbsp;</i>
           </a>
           <input type="text" className="field-control" ref={(input) => { _input = input; }} onChange={() => onChange(_input.value)} />
           <span className="field-group-erase" href="/">
-            <i className="fa fa-times" aria-hidden="true" onClick={this.clearInput}>&nbsp;</i>
+            <i className="fa fa-times" aria-hidden="true" onClick={this.clearInput} >&nbsp;</i>
           </span>
         </div>
         { (fetching) ? (
@@ -31,7 +27,9 @@ class ContactSearch extends Component {
           ) : (
             <ul className="list-group">
               { suggestions.map((item, i) =>
-                <li className="list-group-item" key={i}><a href={`/contact/${item.cn_id}`}>{item.name}</a></li>
+                <li className="list-group-item" key={i}>
+                  <a onClick={() => navigateTo(item.cn_id)} >{item.name}</a>
+                </li>
               )}
             </ul>
           )

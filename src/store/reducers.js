@@ -14,6 +14,8 @@ export const active = (state = null, action) => {
   switch (action.type) {
     case C.FETCH_CONTACT:
       return action.payload;
+    case C.REMOVE_CONTACT:
+      return null;
     default:
       return state;
   }

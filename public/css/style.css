@@ -88,6 +88,24 @@ a:hover {
     padding: 24px;
 }
 
+.card .card-image .card-edit {
+    color: #797979;
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 100%;
+    padding: 24px;
+}
+
+.card .card-image .card-delete {
+    color: #797979;
+    position: absolute;
+    top: 0;
+    right: 48px;
+    max-width: 100%;
+    padding: 24px;
+}
+
 .card .card-title {
     font-size: 24px;
     font-weight: 300;

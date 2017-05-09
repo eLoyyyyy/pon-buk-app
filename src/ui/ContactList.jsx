@@ -10,8 +10,10 @@ class ContactList extends Component {
       <div>
         <ContactListNav />
         <div className="list-group">
-          {contacts.map(contact =>
-            <a onClick={() => navigateTo(contact.cn_id)} key={contact.cn_id} className="list-group-item">{contact.name}</a>
+          {contacts
+            .sort( (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()) )
+            .map(contact =>
+              <a onClick={() => navigateTo(contact.cn_id)} key={contact.cn_id} className="list-group-item">{contact.name}</a>
           )}
         </div>
       </div>

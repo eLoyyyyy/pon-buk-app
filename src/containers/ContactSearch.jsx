@@ -1,18 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ContactSearch from '../ui/ContactSearch.jsx';
-import { suggestContactNames } from '../actions';
-
-const suggestions = [
-  {
-    cn_id: '8-7000',
-    name: 'Jabbee'
-  },
-  {
-    cn_id: '8-6236',
-    name: 'McDo'
-  }
-];
+import { suggestContactNames, fetchContact } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,15 +10,20 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChange(value) {
-      dispatch(
-        suggestContactNames(value)
-      );
-    }
-  };
-};
+const mapDispatchToProps = dispatch =>
+({
+  onChange(value) {
+    dispatch(
+      suggestContactNames(value)
+    );
+  },
+  navigateTo(value) {
+    dispatch(
+      fetchContact(value)
+    );
+    // console.log(value);
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactSearch);
 

@@ -97,18 +97,86 @@ export const addContact = ( name, contactNumber ) => (dispatch) => {
       contact_number: contactNumber
     })
   })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.ADD_CONTACT,
+      payload: {
+        cn_id: response.newId,
+        name,
+        contact_number: contactNumber
+      }
+    });
+    return fetch(`http://localhost:3000/api/users/${response.newId}`);
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.FETCH_CONTACT,
+      payload: response.contact
+    });
+    browserHistory.push(`/contact/${response.contact.cn_id}`);
+  })
+  .catch( (error) => {
+    dispatch(
+      addError(error.message)
+    );
+  });
+};
+
+export const editContact = ( id, name, contactNumber ) => (dispatch) => {
+  fetch(`http://localhost:3000/api/users/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      contact_number: contactNumber
+    })
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.REMOVE_CONTACT,
+      payload: id
+    });
+    dispatch({
+      type: C.ADD_CONTACT,
+      payload: {
+        cn_id: id,
+        name,
+        contact_number: contactNumber
+      }
+    });
+    return fetch(`http://localhost:3000/api/users/${id}`);
+  })
+  .then(res => res.json())
+  .then((response) => {
+    dispatch({
+      type: C.FETCH_CONTACT,
+      payload: response.contact
+    });
+    browserHistory.push(`/contact/${response.contact.cn_id}`);
+  })
+  .catch( (error) => {
+    dispatch(
+      addError(error.message)
+    );
+  });
+};
+
+export const deleteContact = id => (dispatch) => {
+  fetch(`http://localhost:3000/api/users/${id}`, { method: 'DELETE' })
     .then(res => res.json())
     .then((response) => {
       dispatch({
-        type: C.ADD_CONTACT,
-        payload: {
-          cn_id: response.newId,
-          name,
-          contact_number: contactNumber
-        }
+        type: C.REMOVE_CONTACT,
+        payload: id
       });
-      browserHistory.push('/contact');
-    }).catch( (error) => {
+    })
+    .catch( (error) => {
       dispatch(
         addError(error.message)
       );
