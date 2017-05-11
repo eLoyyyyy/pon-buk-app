@@ -1,0 +1,13 @@
+bin/*
+node_modules/*
+**/vendor/*.js
+
+app.js
+settings.js
+webpack.config.js
+test/*.js
+controllers/*.js
+models/*.js
+routes/*.js
+migrations/*.js
+config/**
