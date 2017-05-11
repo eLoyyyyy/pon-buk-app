@@ -39,14 +39,17 @@ describe('User', () => {
         done();
       });
   });
+
   it('should return okay on existing account', (done) => {
     api.get(`/users/${sampleId}`)
       .expect(200, done);
   });
+
   it('should return 404 on non-existent account', (done) => {
     api.get('/users/non-existent-account')
       .expect(404, done);
   });
+
   it('should have correct properties', (done) => {
     api.get(`/users/${sampleId}`)
       .expect(200)
@@ -63,6 +66,7 @@ describe('User', () => {
         done();
       });
   });
+
   it('should correctly update existing contact', (done) => {
     const modifiedContact = {
       name: 'Mikey',
@@ -91,6 +95,7 @@ describe('User', () => {
         done();
       });
   });
+
   it('should delete the account', (done) => {
     api.delete(`/users/${sampleId}`)
       .expect(200)
@@ -102,12 +107,12 @@ describe('User', () => {
         done();
       });
   });
+
   it('should get an empty list of contacts', (done) => {
     api.get('/users')
       .expect(200)
       .end((err, res) => {
         expect(res.body).to.have.property('contacts');
-        expect(res.body.contacts).to.be.a('array');
         expect(res.body.contacts.length).to.equal(0);
         done();
       });
